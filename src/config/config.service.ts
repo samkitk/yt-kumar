@@ -11,6 +11,31 @@ export class AppConfigService {
 }
 
 @Injectable()
+export class DatabaseConfigService {
+  constructor(private configService: ConfigService) {}
+
+  get databaseHost(): string {
+    return this.configService.get<string>('DATABASE_HOST');
+  }
+
+  get databasePort(): number {
+    return Number(this.configService.get<number>('DATABASE_PORT'));
+  }
+
+  get databaseUser(): string {
+    return this.configService.get<string>('DATABASE_USER');
+  }
+
+  get databasePassword(): string {
+    return this.configService.get<string>('DATABASE_PASSWORD');
+  }
+
+  get databaseName(): string {
+    return this.configService.get<string>('DATABASE_NAME');
+  }
+}
+
+@Injectable()
 export class YouTubeConfigService {
   constructor(private configService: ConfigService) {}
 
