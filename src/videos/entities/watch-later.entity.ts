@@ -1,9 +1,15 @@
 import { User } from 'src/user/entities/user.entity';
-import { Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+  BaseEntity,
+} from 'typeorm';
 import { Video } from './video.entity';
 
 @Entity()
-export class WatchLater {
+export class WatchLater extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
