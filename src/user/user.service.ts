@@ -1,21 +1,22 @@
 import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
+import { CreateUserDto } from './dto/user.dto';
+import { User } from './entities/user.entity';
+import { hashPassword } from 'src/utils/hash-password';
 
 @Injectable()
 export class UserService {
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  async create(createUserDto: CreateUserDto) {
+    let userRow = User.create();
+    userRow.email = createUserDto.email;
+    userRow.password = await hashPassword(createUserDto.password);
+    return await userRow.save();
   }
 
-  findAll() {
-    return `This action returns all user`;
+  async findOneById(id: User['id']) {
+    return await User.findOneOrFail({ where: { id: id } });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async findOneByEmail(email: User['email']) {
+    return await User.findOneOrFail({ where: { email: email } });
   }
 }
