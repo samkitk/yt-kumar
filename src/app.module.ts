@@ -6,9 +6,10 @@ import { ConfigModule } from './config/config.module';
 import { ConfigService } from '@nestjs/config';
 import { AppConfigService } from './config/config.service';
 import { UserModule } from './user/user.module';
+import { VideosModule } from './videos/videos.module';
 
 @Module({
-  imports: [ConfigModule, UserModule],
+  imports: [ConfigModule, UserModule, VideosModule],
   controllers: [AppController],
   providers: [ConfigService, AppService, AppConfigService],
 })

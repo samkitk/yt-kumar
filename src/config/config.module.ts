@@ -3,7 +3,7 @@ import {
   ConfigModule as NestConfigModule,
   ConfigService,
 } from '@nestjs/config';
-import { AppConfigService } from './config.service';
+import { AppConfigService, YouTubeConfigService } from './config.service';
 
 @Global()
 @Module({
@@ -13,7 +13,7 @@ import { AppConfigService } from './config.service';
       envFilePath: '.env',
     }),
   ],
-  providers: [ConfigService, AppConfigService],
-  exports: [ConfigService, AppConfigService],
+  providers: [ConfigService, AppConfigService, YouTubeConfigService],
+  exports: [ConfigService, AppConfigService, YouTubeConfigService],
 })
 export class ConfigModule {}
